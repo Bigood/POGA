@@ -16,9 +16,20 @@ pf_app.controller("calendrier", function ($scope,$compile,uiCalendarConfig, $tim
     uiCalendarConfig.calendars.poga.fullCalendar('removeEvents');
     uiCalendarConfig.calendars.poga.fullCalendar('addEventSource', personne.dates);
 
-    $scope.firstDate = moment(personne.dates[0]).locale("fr").format("dddd L");
-    $scope.lastDate = moment(personne.dates[personne.dates.length-1]).locale("fr").format("dddd L");
+    //Extras
+    $scope.firstDate = moment(personne.dates[0].start).locale("fr").format("dddd L");
+    $scope.lastDate = moment(personne.dates[personne.dates.length-1].start).locale("fr").format("dddd L");
     
+    $scope.affectations = {};
+    personne.dates.forEach(function (e, i) {
+      if(typeof $scope.affectations[e.title] == "undefined")
+        $scope.affectations[e.title] = {
+          nom : e.title,
+          liste : [e]
+        };
+      else
+        $scope.affectations[e.title].liste.push(e);
+    })
   }
 
   /* config object */

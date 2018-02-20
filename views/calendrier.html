@@ -6,14 +6,22 @@
     </li>
   </ul>
   <section class="view-calendar">
-    <h1 ng-if="calendrier_personne">{{calendrier_personne.nom}}</h1>
-    <h2 ng-if="calendrier_personne">{{firstDate}} au {{lastDate}}</h2>
+    <h1 ng-if="calendrier_personne" class="titre-personne">{{calendrier_personne.nom}}</h1>
+    <h2 ng-if="calendrier_personne" class="titre-periode"> du {{firstDate}} au {{lastDate}}</h2>
     <div ui-calendar="uiConfig.calendar" calendar="poga" class="span8 calendar" ng-model="dates"></div> 
     <div class="alert alert-success">
+      <h2>Informations sur la période</h2>
       <div>Nombre de jours travaillés : {{dates[0].events.length}}</div>
       <div>Nombre de dimanche total : </div>
+      <div>
+        <span>Affectations : </span>
+        <ul>
+          <li ng-repeat="affectation in affectations">{{affectation.nom}} : {{affectation.liste.length}} jour(s)</li>
+        </ul>
+      </div>
     </div>
     <div class="alert alert-info">
+      <h2>Liste des jours</h2>
       <li ng-repeat="date in dates[0].events">
         {{moment(date.start).locale("fr").format("dddd L")}} : {{date.title}}
       </li>
