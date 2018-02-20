@@ -31,6 +31,9 @@ body {
     font-weight:100;
     text-transform: lowercase;
 }
+.view-calendar h2 {
+    font-size:26px;
+}
 
 
 .fc-view-container {

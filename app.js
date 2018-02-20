@@ -16,8 +16,8 @@ pf_app.controller("calendrier", function ($scope,$compile,uiCalendarConfig, $tim
     uiCalendarConfig.calendars.poga.fullCalendar('removeEvents');
     uiCalendarConfig.calendars.poga.fullCalendar('addEventSource', personne.dates);
 
-    $scope.firstDate = personne.dates[0].titre;
-    $scope.lastDate = personne.dates[personne.dates.length-1].titre;
+    $scope.firstDate = moment(personne.dates[0]).locale("fr").format("dddd L");
+    $scope.lastDate = moment(personne.dates[personne.dates.length-1]).locale("fr").format("dddd L");
     
   }
 
