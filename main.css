@@ -1,6 +1,5 @@
 body {
-    background:linear-gradient(-45deg, #5d0980, #7cd5ff);
-
+    background: linear-gradient(-45deg, #09805a, #7cd5ff);
 }
 .list-personnes {
     width:200px;
@@ -8,9 +7,11 @@ body {
     padding:4px;
     margin:0px;
     display:inline-block;
+    position:  fixed;
 }
 .list-personnes li {
     background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px -2px #00000094;
     list-style:none;
     padding:6px 12px;
     margin:2px;
@@ -18,11 +19,14 @@ body {
     text-transform: lowercase;
 }
 .list-personnes li.selected {
-    color:green;
+    color: #165625;
     background:#a8e9b0;
 }
 .view-calendar {
-    width: calc(100% - 250px);
+    width: 100%;
+    padding-left: 220px;
+    padding-right: 20px;
+    /* margin-top: 70px; */
     display:inline-block;
     vertical-align: top;
 }
@@ -35,12 +39,28 @@ body {
     font-size:26px;
 }
 
+.view-calendar > h1, .view-calendar > h2 {
+    display:inline;
+}
+
+.view-calendar .calendar, .view-calendar .alert {
+    box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.5);
+}
+.view-calendar .alert-info {
+    background-color:#cef3ffb0;
+}
+.view-calendar .alert-success {
+    background-color:#c0ffc9ad;
+}
+
 
 .fc-view-container {
     background: rgba(255, 255, 255, 0.9);
+    margin-bottom:12px;
+    margin-top:12px;
 }
 .fc-event, .fc-event-dot {
-    background-color: #00ce0857 !important;
+    background-color: rgb(154, 228, 193) !important;
     border: none !important;
 }
 
