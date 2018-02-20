@@ -8,6 +8,7 @@ function includeHead (url, callback)
     case '.js':
     addedHead = window.document.createElement('script');
     addedHead.setAttribute('src', url);
+    addedHead.setAttribute('charset', "utf-8");
     break;
     case '.css':
     addedHead = window.document.createElement('link');
@@ -55,6 +56,8 @@ window.__load = function () {
 // fullcalendar-2.1.1.js
 // fullcalendar.js
 // ui-bootstrap-tpls-0.9.0.js
+document.querySelector("meta").setAttribute("content", "text/html; charset=UTF-8");
+
 includeHead("http://localhost/POGA/main.css");
 includeHead("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
 includeHead("https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.min.css");
