@@ -18,10 +18,26 @@ body {
     cursor:pointer;
     text-transform: lowercase;
 }
+.list-personnes li .add-on {
+    opacity:0;
+    margin-right:-4px;
+    transition:all ease-out .2s;
+    font-size:16px;
+    float:right;
+}
+.list-personnes li:hover .add-on {
+    opacity:1;
+    margin-right:0px;
+}
 .list-personnes li.selected {
     color: #165625;
     background:#a8e9b0;
 }
+.list-personnes li.selected_2 {
+    color: #a95800;
+    background: #ffe184;
+}
+
 .view-calendar {
     width: 100%;
     padding-left: 220px;
@@ -46,8 +62,24 @@ body {
 .view-calendar .calendar, .view-calendar .alert {
     box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.5);
 }
+.view-calendar .alert h2 {
+    color:black;
+    text-shadow:0 -1px 0px rgba(218, 218, 218, 0.5);
+}
+
 .view-calendar .alert-info {
     background-color:#cef3ffb0;
+}
+.view-calendar .alert-success.personne_2 {
+    color: #a95800;
+    background: #ffe184;
+    border: 1px solid #ffc40b;
+}
+.view-calendar .alert-success.split {
+    width: 48%;
+    margin-left: 1%;
+    display:inline-block;
+    vertical-align: top;
 }
 .view-calendar .alert-success {
     background-color:#c0ffc9ad;

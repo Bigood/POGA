@@ -4,31 +4,62 @@ pf_app.controller("calendrier", function ($scope,$compile,uiCalendarConfig, $tim
   $scope.array_personnes = window.__people;
   $scope.moment = moment;
 
-  $scope.addSource = function (personne) {
-    $scope.calendrier_personne = personne;
-    $scope.dates = [{
-      id: personne.nom,
-      color: '#f00',
-      textColor: 'yellow',
-      events : personne.dates
-    }];
+  $scope.addSource = function ($event, personne, add) {
+    $event.stopPropagation();
+    if (add) {
+      var _index = $scope.dates.findIndex(function (e,i) {
+        return e.id == personne.nom;
+      })
 
-    uiCalendarConfig.calendars.poga.fullCalendar('removeEvents');
-    uiCalendarConfig.calendars.poga.fullCalendar('addEventSource', personne.dates);
+      if (_index == -1) {
+        $scope.dates.push({
+          id: personne.nom,
+          color: '#0F0',
+          textColor: 'red',
+          events : personne.dates
+        });
+        uiCalendarConfig.calendars.poga.fullCalendar('addEventSource', personne.dates);
 
+
+        $scope.getExtras(personne);
+        $scope.calendrier_personne_2 = personne;
+      }
+      else {
+        $scope.dates.splice(_index, 1);
+        uiCalendarConfig.calendars.poga.fullCalendar('removeEvents');
+        delete $scope.calendrier_personne_2;
+      }
+    }
+    else{
+      $scope.dates = [{
+        id: personne.nom,
+        color: '#f00',
+        textColor: 'yellow',
+        events : personne.dates
+      }];
+      uiCalendarConfig.calendars.poga.fullCalendar('removeEvents');
+      uiCalendarConfig.calendars.poga.fullCalendar('addEventSource', personne.dates);
+      delete $scope.calendrier_personne_2;
+  
+      $scope.getExtras(personne);
+      $scope.calendrier_personne = personne;
+    }
+
+  }
+  $scope.getExtras = function (personne) {
     //Extras
-    $scope.firstDate = moment(personne.dates[0].start).locale("fr").format("dddd L");
-    $scope.lastDate = moment(personne.dates[personne.dates.length-1].start).locale("fr").format("dddd L");
+    personne.firstDate = moment(personne.dates[0].start).locale("fr").format("dddd L");
+    personne.lastDate = moment(personne.dates[personne.dates.length-1].start).locale("fr").format("dddd L");
     
-    $scope.affectations = {};
+    personne.affectations = {};
     personne.dates.forEach(function (e, i) {
-      if(typeof $scope.affectations[e.title] == "undefined")
-        $scope.affectations[e.title] = {
+      if(typeof personne.affectations[e.title] == "undefined")
+        personne.affectations[e.title] = {
           nom : e.title,
           liste : [e]
         };
       else
-        $scope.affectations[e.title].liste.push(e);
+        personne.affectations[e.title].liste.push(e);
     })
   }
 
