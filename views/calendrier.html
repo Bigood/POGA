@@ -1,0 +1,20 @@
+<section ng-controller="calendrier">
+  <ul class="list-personnes">
+    <li ng-repeat="personne in array_personnes | orderBy:'nom'" ng-click="addSource(personne)" ng-class="{selected : calendrier_personne == personne}">
+      {{personne.nom}}
+    </li>
+  </ul>
+  <section class="view-calendar">
+    <h1>{{calendrier_personne.nom}} - {{moment(firstDay).locale("fr").format("dddd L")}} au {{moment(lastDay).locale("fr").format("dddd L")}}</h1>
+    <div ui-calendar="uiConfig.calendar" calendar="poga" class="span8 calendar" ng-model="dates"></div> 
+    <div class="alert alert-success">
+      <div>Nombre de jours travaillés : {{dates[0].events.length}}</div>
+      <div>Nombre de dimanche total : </div>
+    </div>
+    <div class="alert alert-info">
+      <li ng-repeat="date in dates[0].events">
+        {{moment(date.start).locale("fr").format("dddd L")}} : {{date.title}}
+      </li>
+    </div>
+  </section>
+</section>

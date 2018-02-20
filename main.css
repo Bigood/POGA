@@ -1,0 +1,46 @@
+body {
+    background:linear-gradient(-45deg, #5d0980, #7cd5ff);
+
+}
+.list-personnes {
+    width:200px;
+    list-style:none;
+    padding:4px;
+    margin:0px;
+    display:inline-block;
+}
+.list-personnes li {
+    background: rgba(255, 255, 255, 0.9);
+    list-style:none;
+    padding:6px 12px;
+    margin:2px;
+    cursor:pointer;
+    text-transform: lowercase;
+}
+.list-personnes li.selected {
+    color:green;
+    background:#a8e9b0;
+}
+.view-calendar {
+    width: calc(100% - 250px);
+    display:inline-block;
+    vertical-align: top;
+}
+.view-calendar h1, .view-calendar h2 {
+    color:white;
+    font-weight:100;
+    text-transform: lowercase;
+}
+
+
+.fc-view-container {
+    background: rgba(255, 255, 255, 0.9);
+}
+.fc-event, .fc-event-dot {
+    background-color: #00ce0857 !important;
+    border: none !important;
+}
+
+.fc-time {
+    display:none;
+}
