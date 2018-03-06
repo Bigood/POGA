@@ -7,7 +7,7 @@ Bookmark pour styliser le POGA OF
 
 1 -Glisser-déposer ce texte dans votre barre de favoris :
 
-    javascript:var head = window.document.getElementsByTagName('head')[0]; var addedHead= window.document.createElement('script'); addedHead.setAttribute('src', "https://raw.githubusercontent.com/Bigood/POGA/master/import.js"); addedHead.async=true; head.appendChild(addedHead);
+    javascript:var head = window.document.getElementsByTagName('head')[0]; var addedHead= window.document.createElement('script'); addedHead.setAttribute('src', "http://www.maen-j.com/POGA/import.js"); addedHead.async=true; head.appendChild(addedHead);
     
 2 - Ensuite, consultez votre planning comme d'habitude en choisissant la période à afficher.
 3 - Une fois que votre planning est affiché sur votre écran (le grand tableau), cliquez sur le favori créé juste avant
@@ -21,3 +21,4 @@ Bookmark pour styliser le POGA OF
 # Bugs connus
 
 - Le nombre de dimanche n'est pas affiché
+- Les couleurs des plannings ne concordent pas avec la couleur de la personne sélectionnée
