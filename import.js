@@ -1,3 +1,7 @@
+window.POGA = {
+  root_url : "https://raw.githubusercontent.com/Bigood/POGA/master/"
+}
+
 function includeHead (url, callback)
 {
   var head = window.document.getElementsByTagName('head')[0];
@@ -47,8 +51,8 @@ function includeHead (url, callback)
 window.__load = function () {
   $("html frameset").remove();
   $("html").append(document.createElement("body"))
-  $("body").load("http://localhost/POGA/views/calendrier.html", function (argument) {
-    includeHead("http://localhost/POGA/app.js");
+  $("body").load(POGA.root_url + "views/calendrier.html", function (argument) {
+    includeHead(POGA.root_url + "app.js");
   });
 }
 
@@ -58,21 +62,21 @@ window.__load = function () {
 // ui-bootstrap-tpls-0.9.0.js
 document.querySelector("meta").setAttribute("content", "text/html; charset=UTF-8");
 
-includeHead("http://localhost/POGA/main.css");
+includeHead(POGA.root_url + "main.css");
 includeHead("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
 includeHead("https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.min.css");
-includeHead("http://localhost/POGA/lib/jquery.js", function (argument) {
+includeHead(POGA.root_url + "lib/jquery.js", function (argument) {
 // includeHead("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js", function (argument) {
-  includeHead("http://localhost/POGA/lib/jquery-ui.min.js", function (argument) {
-    includeHead("http://localhost/POGA/lib/moment-with-locale.js", function (argument) {
+  includeHead(POGA.root_url + "lib/jquery-ui.min.js", function (argument) {
+    includeHead(POGA.root_url + "lib/moment-with-locale.js", function (argument) {
       includeHead("https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js", function (argument) {
         // includeHead("https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.min.js", function (argument) {
-        includeHead("http://localhost/POGA/lib/fullcalendar-2.1.1.js", function (argument) {
+        includeHead(POGA.root_url + "lib/fullcalendar-2.1.1.js", function (argument) {
           // includeHead("https://cdnjs.cloudflare.com/ajax/libs/angular-ui-calendar/1.0.0/calendar.js", function (argument) {
-          includeHead("http://localhost/POGA/lib/calendar.js", function (argument) {
+          includeHead(POGA.root_url + "lib/calendar.js", function (argument) {
             // includeHead("https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.js", function (argument) {
-            includeHead("http://localhost/POGA/lib/ui-bootstrap-tpls-0.9.0.js", function (argument) {
-              includeHead("http://localhost/POGA/loop.js", function (argument) {
+            includeHead(POGA.root_url + "lib/ui-bootstrap-tpls-0.9.0.js", function (argument) {
+              includeHead(POGA.root_url + "loop.js", function (argument) {
               });
             });
           });
