@@ -1,5 +1,5 @@
 window.POGA = {
-  root_url : "http://www.maen-j.com/POGA/"
+  root_url : "https://maen-j.com/POGA/"
 }
 
 function includeHead (url, callback)
