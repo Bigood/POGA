@@ -97,7 +97,7 @@ body {
     margin-top:12px;
 }
 .fc-event, .fc-event-dot {
-    background-color: rgb(154, 228, 193) !important;
+    /*background-color: rgb(154, 228, 193) !important;*/
     border: none !important;
 }
 

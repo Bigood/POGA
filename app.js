@@ -12,13 +12,18 @@ pf_app.controller("calendrier", function ($scope,$compile,uiCalendarConfig, $tim
       })
 
       if (_index == -1) {
+        if ($scope.dates.length == 2) {
+          $scope.dates.pop();
+          uiCalendarConfig.calendars.poga.fullCalendar('removeEvents');
+          uiCalendarConfig.calendars.poga.fullCalendar('addEventSource', $scope.dates[0]);
+        }
         $scope.dates.push({
           id: personne.nom,
-          color: '#0F0',
-          textColor: 'red',
+          backgroundColor: '#ffe184',
+          textColor: '#a95800',
           events : personne.dates
         });
-        uiCalendarConfig.calendars.poga.fullCalendar('addEventSource', personne.dates);
+        uiCalendarConfig.calendars.poga.fullCalendar('addEventSource', $scope.dates[1]);
 
 
         $scope.getExtras(personne);
@@ -27,18 +32,19 @@ pf_app.controller("calendrier", function ($scope,$compile,uiCalendarConfig, $tim
       else {
         $scope.dates.splice(_index, 1);
         uiCalendarConfig.calendars.poga.fullCalendar('removeEvents');
+        uiCalendarConfig.calendars.poga.fullCalendar('addEventSource', $scope.dates[0]);
         delete $scope.calendrier_personne_2;
       }
     }
     else{
       $scope.dates = [{
         id: personne.nom,
-        color: '#f00',
-        textColor: 'yellow',
+        backgroundColor: '#9ae4c1',
+        textColor: '#165625',
         events : personne.dates
       }];
       uiCalendarConfig.calendars.poga.fullCalendar('removeEvents');
-      uiCalendarConfig.calendars.poga.fullCalendar('addEventSource', personne.dates);
+      uiCalendarConfig.calendars.poga.fullCalendar('addEventSource', $scope.dates[0]);
       delete $scope.calendrier_personne_2;
   
       $scope.getExtras(personne);
