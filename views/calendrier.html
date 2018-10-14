@@ -9,11 +9,11 @@
   <section class="view-calendar">
     <h1 ng-if="calendrier_personne" class="titre-personne">{{calendrier_personne.nom}}</h1>
     <h2 ng-if="calendrier_personne" class="titre-periode"> du {{calendrier_personne.firstDate}} au {{calendrier_personne.lastDate}}</h2>
-    <div ui-calendar="uiConfig.calendar" calendar="poga" class="span8 calendar" ng-model="dates"></div> 
+    <div ui-calendar="uiConfig.calendar" calendar="poga" class="span8 calendar" ng-model="dates"></div>
     <div class="alert alert-success" ng-if="calendrier_personne" ng-class="{'split' : calendrier_personne_2}">
       <h2>{{calendrier_personne.nom}} - Informations sur la période</h2>
       <div>Nombre de jours travaillés : {{calendrier_personne.dates.length}}</div>
-      <div>Nombre de dimanche total : </div>
+      <div ng-if="calendrier_personne.conges.length > 0">Nombre de congés payés : {{calendrier_personne.conges.length}}</div>
       <div>
         <span>Affectations : </span>
         <ul>
@@ -24,7 +24,7 @@
     <div class="alert alert-success personne_2 split" ng-if="calendrier_personne_2">
       <h2>{{calendrier_personne_2.nom}} - Informations sur la période</h2>
       <div>Nombre de jours travaillés : {{calendrier_personne_2.dates.length}}</div>
-      <div>Nombre de dimanche total : </div>
+      <div ng-if="calendrier_personne_2.conges.length > 0">Nombre de congés payés : {{calendrier_personne_2.conges.length}}</div>
       <div>
         <span>Affectations : </span>
         <ul>

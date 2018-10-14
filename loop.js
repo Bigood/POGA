@@ -4,7 +4,8 @@ window.__people = []
 $("tr td", top.frames["users"].document).each(function (i, e) {
   __people.push({
     nom : e.innerText,
-    dates : []
+    dates : [],
+    conges : [],
   });
 })
 
@@ -20,10 +21,19 @@ $("tr", top.frames["cells"].document).each(function (i, e) {
   $("td", e).each(function (_i, _e) {
     //S'il y a une date
     if (_e.innerText != "&nbsp" && _e.innerText.trim() != "") {
-      __people[_i].dates.push({
-        start: moment(__dates[i], "ddd DD MMM YY", "fr").toDate(),
-        title: _e.innerText
-      })
+      //Séparation des congés payés
+      if(_e.innerText.toLowerCase() == "cp"){
+        __people[_i].conges.push({
+          start: moment(__dates[i], "ddd DD MMM YY", "fr").toDate(),
+          title: _e.innerText
+        })
+      }
+      else{
+        __people[_i].dates.push({
+          start: moment(__dates[i], "ddd DD MMM YY", "fr").toDate(),
+          title: _e.innerText
+        })
+      }
     }
   })
 })
@@ -48,7 +58,7 @@ if(typeof window.__load == "function")
 //   myRows[index] = {};
 //   $cells.each(function(cellIndex) {
 //     myRows[index][$($headers[cellIndex]).html()] = $(this).html();
-//   });    
+//   });
 // });
 
 // // Let's put this in the object like you want and convert to JSON (Note: jQuery will also do this for you on the Ajax request)
