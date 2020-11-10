@@ -13,7 +13,10 @@
     <div class="alert alert-success" ng-if="calendrier_personne" ng-class="{'split' : calendrier_personne_2}">
       <h2>{{calendrier_personne.nom}} - Informations sur la période</h2>
       <div>Nombre de jours travaillés : {{calendrier_personne.dates.length}}</div>
+      <div>Nombre de samedi travaillés : {{calendrier_personne.calculJours('Sat')}}</div>
+      <div>Nombre de dimanche travaillés : {{calendrier_personne.calculJours('Sun')}}</div>
       <div ng-if="calendrier_personne.conges.length > 0">Nombre de congés payés : {{calendrier_personne.conges.length}}</div>
+      <hr/>
       <div>
         <span>Affectations : </span>
         <ul>
@@ -32,11 +35,13 @@
         </ul>
       </div>
     </div>
+    <!--
     <div class="alert alert-info" ng-if="calendrier_personne">
       <h2>Liste des jours</h2>
       <li ng-repeat="date in dates[0].events">
         {{moment(date.start).locale("fr").format("dddd L")}} : {{date.title}}
       </li>
     </div>
+    -->
   </section>
 </section>

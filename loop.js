@@ -6,6 +6,11 @@ $("tr td", top.frames["users"].document).each(function (i, e) {
     nom : e.innerText,
     dates : [],
     conges : [],
+    calculJours: function(dateString){
+	return this.dates.reduce(function(previous, current){
+		return previous += current.start.toDateString().indexOf(dateString) >= 0 ? 1 : 0;
+	}, 0)
+    }
   });
 })
 
