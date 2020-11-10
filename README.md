@@ -1,9 +1,11 @@
-![Poga](http://maen-j.com/poga.png)
+![Poga](screenshot.png)
 
 # POGA
-Bookmark pour styliser le POGA OF
+[Bookmark pour styliser le POGA OF](https://www.trema.ovh/POGA)
 
 # Utilisation
+
+[Voir la page d'explication](https://www.trema.ovh/POGA), ou suivre ces étapes :
 
 1. Séléctionnez tout le texte suivant, puis glissez-déposez ce texte dans votre barre de favoris (ou trouvez l'option "Ajouter un nouveau favori / nouvelle page", et remplissez le champ "Adresse / URL" avec ceci) :
 
@@ -20,5 +22,4 @@ Bookmark pour styliser le POGA OF
 
 # Bugs connus
 
-- Le nombre de dimanche n'est pas affiché
 - Les couleurs des plannings ne concordent pas avec la couleur de la personne sélectionnée
