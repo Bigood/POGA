@@ -4,6 +4,7 @@ window.__people = []
 $("tr td", top.frames["users"].document).each(function (i, e) {
   __people.push({
     nom : e.innerText,
+    ics: ics(), //https://github.com/michael-maltsev/ics.js.git
     dates : [],
     conges : [],
     calculJours: function(dateString){
@@ -23,21 +24,24 @@ $("tr td", top.frames["dates"].document).each(function (i, e) {
 //Récupération des noms
 window.__cell = []
 $("tr", top.frames["cells"].document).each(function (i, e) {
+  const momentDate = moment(__dates[i], "ddd DD MMM YY", "fr");
   $("td", e).each(function (_i, _e) {
     //S'il y a une date
     if (_e.innerText != "&nbsp" && _e.innerText.trim() != "") {
       //Séparation des congés payés
       if(_e.innerText.toLowerCase() == "cp"){
         __people[_i].conges.push({
-          start: moment(__dates[i], "ddd DD MMM YY", "fr").toDate(),
+          start: momentDate.toDate(),
           title: _e.innerText
         })
       }
       else{
         __people[_i].dates.push({
-          start: moment(__dates[i], "ddd DD MMM YY", "fr").toDate(),
+          start: momentDate.toDate(),
           title: _e.innerText
         })
+        const dateICS = momentDate.format("M/D/YYYY")
+        __people[_i].ics.addEvent(_e.innerText, '', '', dateICS, dateICS)
       }
     }
   })

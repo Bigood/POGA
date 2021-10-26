@@ -73,10 +73,12 @@ includeHead(POGA.root_url + "lib/jquery.js", function (argument) {
         // includeHead("https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.min.js", function (argument) {
         includeHead(POGA.root_url + "lib/fullcalendar-2.1.1.js", function (argument) {
           // includeHead("https://cdnjs.cloudflare.com/ajax/libs/angular-ui-calendar/1.0.0/calendar.js", function (argument) {
-          includeHead(POGA.root_url + "lib/calendar.js", function (argument) {
-            // includeHead("https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.js", function (argument) {
-            includeHead(POGA.root_url + "lib/ui-bootstrap-tpls-0.9.0.js", function (argument) {
-              includeHead(POGA.root_url + "loop.js", function (argument) {
+          includeHead(POGA.root_url + "lib/ics.deps.min.js", function (argument) {
+            includeHead(POGA.root_url + "lib/calendar.js", function (argument) {
+              // includeHead("https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.js", function (argument) {
+              includeHead(POGA.root_url + "lib/ui-bootstrap-tpls-0.9.0.js", function (argument) {
+                includeHead(POGA.root_url + "loop.js", function (argument) {
+                });
               });
             });
           });
