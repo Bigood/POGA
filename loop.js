@@ -33,19 +33,22 @@ $("tr", top.frames["cells"].document).each(function (i, e) {
         __people[_i].conges.push({
           start: momentDate.toDate(),
           title: _e.innerText,
+          backgroundColor: _e.bgColor
         })
       }
       else{
         if (_e.innerText.toLowerCase() == "sre-web"){
           __people[_i].dates.push({
             start: momentDate.toDate(),
-            title: _e.bgColor == '#ff00ff' ? "SRE-web PM" : "SRE-web",
+            title: _e.bgColor == '#ff00ff' ? "SRE-web aprèm" : "SRE-web",
+            backgroundColor: _e.bgColor
           })
         }
         else { 
           __people[_i].dates.push({
             start: momentDate.toDate(),
             title: _e.innerText,
+            backgroundColor: _e.bgColor
           })
         }
         const dateICS = momentDate.format("M/D/YYYY")
