@@ -15,13 +15,13 @@ $("tr td", top.frames["users"].document).each(function (i, e) {
   });
 })
 
-//Récupération des noms
+//Récupération des dates
 window.__dates = []
 $("tr td", top.frames["dates"].document).each(function (i, e) {
   __dates.push(e.innerText);
 })
 
-//Récupération des noms
+//Récupération des jours de travail
 window.__cell = []
 $("tr", top.frames["cells"].document).each(function (i, e) {
   const momentDate = moment(__dates[i], "ddd DD MMM YY", "fr");
@@ -32,14 +32,22 @@ $("tr", top.frames["cells"].document).each(function (i, e) {
       if(_e.innerText.toLowerCase() == "cp"){
         __people[_i].conges.push({
           start: momentDate.toDate(),
-          title: _e.innerText
+          title: _e.innerText,
         })
       }
       else{
-        __people[_i].dates.push({
-          start: momentDate.toDate(),
-          title: _e.innerText
-        })
+        if (_e.innerText.toLowerCase() == "sre-web"){
+          __people[_i].dates.push({
+            start: momentDate.toDate(),
+            title: _e.bgColor == '#ff00ff' ? "SRE-web PM" : "SRE-web",
+          })
+        }
+        else { 
+          __people[_i].dates.push({
+            start: momentDate.toDate(),
+            title: _e.innerText,
+          })
+        }
         const dateICS = momentDate.format("M/D/YYYY")
         __people[_i].ics.addEvent(_e.innerText, '', '', dateICS, dateICS)
       }
