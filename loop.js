@@ -58,6 +58,12 @@ $("tr", top.frames["cells"].document).each(function (i, e) {
   })
 })
 
+//Récupération des dates de début et de fin du planning analysé, dans la première frame (sans nom) du doc
+//44-Secrétaires d'éditions Nantes - Planning prévisionnel du 01/09/2022 au 30/09/2022
+window.__datesPlanning = top.frames[0].document.querySelector("body > table > tbody > tr:nth-child(1) > td").innerText.match(/\d\d\/\d\d\/\d\d\d\d/g)
+//Planning publié jusqu'au 30/09/2022
+window.__maxDatePublication = top.frames[0].document.querySelector("body > table > tbody > tr:nth-child(2) > td").innerText.match(/\d\d\/\d\d\/\d\d\d\d/g)[0]
+
 if(typeof window.__load == "function")
   window.__load();
 

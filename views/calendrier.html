@@ -7,8 +7,8 @@
     </li>
   </ul>
   <section class="view-calendar">
+    <h2 class="">Planning du {{datesPlanning[0].format("DD/MM/YYYY")}} au {{datesPlanning[1].format("DD/MM/YYYY")}}</h2>
     <h1 ng-if="calendrier_personne" class="titre-personne">{{calendrier_personne.nom}}</h1>
-    <h2 ng-if="calendrier_personne" class="titre-periode"> du {{calendrier_personne.firstDate}} au {{calendrier_personne.lastDate}}</h2>
     <div ui-calendar="uiConfig.calendar" calendar="poga" class="span8 calendar" ng-model="dates"></div>
     <div class="alert alert-success" ng-if="calendrier_personne" ng-class="{'split' : calendrier_personne_2}">
       <h2 class="btn-group">{{calendrier_personne.nom}}

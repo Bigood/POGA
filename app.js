@@ -2,6 +2,9 @@ var pf_app = angular.module('poga_app',['ui.calendar', 'ui.bootstrap']);
 
 pf_app.controller("calendrier", function ($scope,$compile,uiCalendarConfig, $timeout) {
   $scope.array_personnes = window.__people;
+  $scope.datesPlanning = window.__datesPlanning.map((dateString) => moment(dateString, "DD/MM/YYYY"));
+  $scope.maxDatePublication = window.__maxDatePublication;
+
   $scope.moment = moment;
 
   $scope.addSource = function ($event, personne, add) {
@@ -74,12 +77,24 @@ pf_app.controller("calendrier", function ($scope,$compile,uiCalendarConfig, $tim
     calendar:{
       height: 450,
       firstDay: 1,
+      defaultDate: $scope.datesPlanning[0].format("YYYY-MM-DD"),
       header:{
         left: 'title',
         center: '',
         right: 'today prev,next'
       },
-      dayNames : ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]
+      dayNames : ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+      /**
+       * https://fullcalendar.io/docs/day-cell-render-hooks
+       * 
+        0: FCMoment {_isAMomentObject: true, _isUTC: true, _offset: 0, _pf: {…}, _locale: f, …}
+        1: jQuery.fn.init [td.fc-day.fc-widget-content.fc-mon.fc-past, context: td.fc-day.fc-widget-content.fc-mon.fc-past]
+        2: MonthView {calendar: Calendar, opt: ƒ, trigger: ƒ, isEventDraggable: ƒ, isEventResizable: ƒ, …}
+       */
+      dayRender: function (day, cell, calendar) {
+        if (!day.isBetween($scope.datesPlanning[0], $scope.datesPlanning[1], undefined, "[]"))
+          cell.css("background-color", "#ccc"); 
+      }
     }
   };
   /* event sources array*/
