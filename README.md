@@ -1,11 +1,11 @@
 ![Poga](screenshot.png)
 
 # POGA
-[Bookmark pour styliser le POGA OF](https://www.trema.ovh/POGA)
+[Bookmark pour styliser le POGA OF](https://static.trema.ovh/POGA)
 
 # Utilisation
 
-[Voir la page d'explication](https://www.trema.ovh/POGA), ou suivre ces étapes :
+[Voir la page d'explication](https://static.trema.ovh/POGA), ou suivre ces étapes :
 
 1. Séléctionnez tout le texte suivant, puis glissez-déposez ce texte dans votre barre de favoris (ou trouvez l'option "Ajouter un nouveau favori / nouvelle page", et remplissez le champ "Adresse / URL" avec ceci) :
 
