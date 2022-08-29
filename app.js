@@ -1,6 +1,6 @@
-var pf_app = angular.module('poga_app',['ui.calendar', 'ui.bootstrap']);
+var _app = angular.module('poga_app', ['ui.calendar', 'ui.bootstrap']);
 
-pf_app.controller("calendrier", function ($scope,$compile,uiCalendarConfig, $timeout) {
+_app.controller("calendrier", function ($scope, $compile, uiCalendarConfig, $http, $httpParamSerializerJQLike) {
   $scope.array_personnes = window.__people;
   $scope.datesPlanning = window.__datesPlanning.map((dateString) => moment(dateString, "DD/MM/YYYY"));
   $scope.maxDatePublication = window.__maxDatePublication;
@@ -72,6 +72,12 @@ pf_app.controller("calendrier", function ($scope,$compile,uiCalendarConfig, $tim
     })
   }
 
+  $scope.quiEstLa = function (day) {
+    
+
+    //$scope.array_personnes
+  }
+
   /* config object */
   $scope.uiConfig = {
     calendar:{
@@ -92,8 +98,56 @@ pf_app.controller("calendrier", function ($scope,$compile,uiCalendarConfig, $tim
         2: MonthView {calendar: Calendar, opt: ƒ, trigger: ƒ, isEventDraggable: ƒ, isEventResizable: ƒ, …}
        */
       dayRender: function (day, cell, calendar) {
-        if (!day.isBetween($scope.datesPlanning[0], $scope.datesPlanning[1], undefined, "[]"))
-          cell.css("background-color", "#ccc"); 
+        if (!day.isBetween($scope.datesPlanning[0], $scope.datesPlanning[1], undefined, "[]")) {
+          
+          const storedQla = localStorage.getItem(day.format("DD/MM/Y"));
+          if (storedQla) {
+            cell.append($("<div>", {
+                class: "qla-tooltip",
+                html: JSON.parse(storedQla).presents.map(present => $("<div>", { text: `${present.nom} (${present.poste})` }))
+              }),
+            ); 
+            cell.css("background-color", "rgba(0,0,0,0.1)"); 
+          }
+          //On la colore en gris, et on rajoute un event onclick pour appeler le qui est là pour ce jour ci
+          else {
+            cell.css("background-color", "rgba(0,0,0,0.2)"); 
+            cell.css("cursor", "pointer"); 
+            cell.on("click", function () {
+              $http.post(
+                "/poga/TraitementParametresServlet",
+                $httpParamSerializerJQLike({
+                  dateDebut: day.format("DD/MM/Y"),
+                  action: "ConsulterJour",
+                  periodeRadio: 1,
+                  equipe: 113
+                }),
+                { withCredentials: true, headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' } }
+              )
+                .then(function (result) {
+                  //https://stackoverflow.com/a/21870431/1437016
+                  var parser = new DOMParser();
+                  var htmlDoc = parser.parseFromString(result.data, 'text/html');
+                  const SRs = htmlDoc.querySelectorAll("body > table:nth-child(25) > tbody > tr")
+                  let presents = [];
+                  SRs.forEach(tr => presents.push({
+                    poste: tr.querySelector("td:first-child").textContent,
+                    nom: tr.querySelector("td font").textContent
+                  }))
+                  console.log(presents);
+                  //Sauvegarde de la donnée pour plus tard
+                  localStorage.setItem(day.format("DD/MM/Y"), JSON.stringify({ updateDate: moment().toISOString(), presents}))
+                  cell.append($("<div>",{
+                      class: "qla-tooltip",
+                      html:presents.map(present => $("<div>", {text: `${present.nom} (${present.poste})`}))
+                    }),
+                  ); 
+                  cell.css("background-color", "rgba(0,0,0,0.1)"); 
+                })
+
+            })
+          }
+        }
       }
     }
   };
@@ -101,7 +155,6 @@ pf_app.controller("calendrier", function ($scope,$compile,uiCalendarConfig, $tim
   $scope.dates = [];
   // $scope.addSource($scope.array_personnes[0])
 })
-
 angular.element(document).ready(function() {
   angular.bootstrap(document, ['poga_app']);
 });

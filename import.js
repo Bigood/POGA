@@ -1,5 +1,5 @@
 window.POGA = {
-  root_url : "https://static.trema.ovh/POGA/"
+  root_url : "http://localhost/POGA/" //"https://static.trema.ovh/POGA/"
 }
 
 function includeHead (url, callback)

@@ -112,3 +112,20 @@ body {
 .fc-unthemed td.fc-today {
     background:#78d4fb30 !important;
 }
+
+.fc-day .qla-tooltip {
+    display: none;
+}
+.fc-day:hover .qla-tooltip {
+    display: block;
+}
+.qla-tooltip {
+    z-index: 99999999;
+    position: absolute;
+    background: white;
+    font-size: 14px;
+    padding: 6px 10px;
+}
+.fc-row .fc-bg, .fc-day-grid .fc-row {
+    z-index: unset !important;
+}
