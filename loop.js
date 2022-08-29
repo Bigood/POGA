@@ -2,8 +2,12 @@
 //Récupération des noms
 window.__people = []
 $("tr td", top.frames["users"].document).each(function (i, e) {
+  const fullname = e.innerText,
+       splitName = fullname.match(/(([A-z]|-)*?)([A-Z]*)$/gm).filter(el => el != "");
   __people.push({
-    nom : e.innerText,
+    nom : fullname,
+    surname: splitName[0],
+    familyName: splitName[1],
     ics: ics(), //https://github.com/michael-maltsev/ics.js.git
     dates : [],
     conges : [],

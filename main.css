@@ -126,6 +126,18 @@ body {
     font-size: 14px;
     padding: 6px 10px;
 }
+.qla-tooltip .bold {
+    font-weight: bold;
+}
+.qla-suggested {
+    font-size: 13px;
+    padding: 2px;
+    background: white;
+    outline: 1px dashed #c4c4c4;
+    margin: 22px 2px 0px;
+    border-radius: 4px;
+    font-style: italic;
+}
 .fc-row .fc-bg, .fc-day-grid .fc-row {
     z-index: unset !important;
 }
