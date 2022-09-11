@@ -41,22 +41,18 @@ $("tr", top.frames["cells"].document).each(function (i, e) {
         })
       }
       else{
+        let title = _e.innerText,
+          dateICS = momentDate.format("M/D/YYYY");
+
         if (_e.innerText.toLowerCase() == "sre-web"){
-          __people[_i].dates.push({
-            start: momentDate.toDate(),
-            title: _e.bgColor == '#ff00ff' ? "SRE-web aprèm" : "SRE-web",
-            backgroundColor: _e.bgColor
-          })
+          title = _e.bgColor == '#ff00ff' ? "SRE-web aprèm" : "SRE-web";
         }
-        else { 
-          __people[_i].dates.push({
-            start: momentDate.toDate(),
-            title: _e.innerText,
-            backgroundColor: _e.bgColor
-          })
-        }
-        const dateICS = momentDate.format("M/D/YYYY")
-        __people[_i].ics.addEvent(_e.innerText, '', '', dateICS, dateICS)
+        __people[_i].dates.push({
+          start: momentDate.toDate(),
+          title: title,
+          backgroundColor: _e.bgColor
+        })
+        __people[_i].ics.addEvent(title, '', '', dateICS, dateICS)
       }
     }
   })
